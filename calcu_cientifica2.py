@@ -72,6 +72,7 @@ def log():
         display.delete(0, tk.END)
         display.insert(0, "Error")
 
+
 def exp():
     try:
         estado["base_exp"] = float(display.get())
@@ -111,11 +112,11 @@ for i in range(8):
 for i in range(4):
     root.grid_columnconfigure(i, weight=1)
 
-display = tk.Entry(root, font=("Arial", 20), bd=6, justify="right", bg="lightblue")
+display = tk.Entry(root, font=("Arial", 20, "bold"), bd=6, justify="right", bg="lightsteelblue")
 display.grid(row=0, column=0, columnspan=4, sticky=tk.NSEW, padx=5, pady=5)
 
 botones = [
-    ("log", log), ("In", ln), ("raiz", raiz), ("exp", exp),
+    ("log", log), ("In", ln), ("√", raiz), ("exp", exp),
     ("sen", sen), ("cos", cos), ("tan", tan), ("%", lambda: click_boton("%")),
     ("7", lambda: click_boton("7")), ("8", lambda: click_boton("8")), ("9", lambda: click_boton("9")), ("/", lambda: click_boton("/")),
     ("4", lambda: click_boton("4")), ("5", lambda: click_boton("5")), ("6", lambda: click_boton("6")), ("*", lambda: click_boton("*")),
@@ -127,7 +128,7 @@ botones = [
 row_num = 1
 col_num = 0
 for texto, comando in botones:
-    button = tk.Button(root, text=texto, font=("Arial", 16), command=comando)
+    button = tk.Button(root, text=texto, font=("Arial", 17), command=comando, bg="lightgray")
     button.grid(row=row_num, column=col_num, sticky=tk.NSEW, padx=5, pady=5)
     col_num += 1
     if col_num > 3:
