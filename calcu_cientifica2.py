@@ -6,11 +6,21 @@
 import tkinter as tk
 import math
 
+base_exp= None
+modo_exp= False
+estado= {"base_exp":None, "modo_exp":False}
+
 def click_boton(caracter):
     current_text = display.get()
     if caracter == "=":
         try:
-            result = eval(current_text)
+            if estado["modo_exp"]:
+                exponente=float(current_text)
+                result=math.pow(estado["base_exp"],exponente)
+                estado["modo_exp"]=False
+                estado["base_exp"]=None
+            else:
+                result = eval(current_text)
             display.delete(0, tk.END)
             display.insert(tk.END, str(result))
         except Exception:
@@ -64,10 +74,9 @@ def log():
 
 def exp():
     try:
-        numero = float(display.get())
-        resultado = math.exp(numero)
+        estado["base_exp"] = float(display.get())
+        estado["modo_exp"]=True
         display.delete(0, tk.END)
-        display.insert(0, str(resultado))
     except ValueError:
         display.delete(0, tk.END)
         display.insert(0, "Error")
